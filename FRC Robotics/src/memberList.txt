@@ -1,0 +1,77 @@
+mentors-Mentors-We teach, educate and help out with everything!:
+ -Nealon Barker-2013-Bleh----
+ -David Boyd-2017-FRC & FTC Mentor-Lorenz Research-Jack of many trades and master of none-Watching the rookie team compete from Baghdad-
+ -George Burgess------
+ -Jacob Cohen------
+ -Jesse Knight------
+ -Jacob Laverty------
+ -Larry Laverty------
+ -Jamie Lechner------
+ -Dennis Luban------
+ -Lakshmi Meyyappan-2015-Electronics-Macedon Technologies-I'm from Malaysia, and started college when I was 16!-Getting to see those lightbulb moments-
+ -Chris O'Connell------
+ -Jonathan Rezadoost------
+ -Marc Sciarrino------
+ -Brian Shepard------
+ -Rebecca Wescott------
+ -Ed White------
+ -Robert Udicious--FRC & FTC Mentor-Lockheed Martin---
+business-Business-We do all the non-shop work so the rest of the team can do their thing! ;):
+ -Justine Suegay---
+ -Navya Annapareddy---
+ -Cameron Bell---
+ -Julia Burks---
+ -Maria Contreras---
+ -Mai Ellen Dang---
+ -Aliyah Desautels---
+ -Kristen Giesler---
+ -Samuel Heinzer---
+ -Stephanie Hickman---
+ -Matthew Homnyom---
+ -Linda Kil---
+ -Hana Komine---
+ -Jason Lew---
+ -Tony Lin---
+ -Pravin Mahadevan---
+ -Amr Metwally---
+ -Reeya Rabena---
+ -Johannah Suegay---
+ -Jake Wescott---
+ -Colin White---
+ -Justine Suegay---
+build-Build-We cut, build, and sculpt ideas from scratch!:
+ -Stephen Hill---
+ -Monica Karas---
+ -Nicholas Lechner---
+ -Noah Lechner---
+ -Nicholas Leuenberger---
+ -Brett O'Brien---
+ -Nick Phomsouvanh---
+ -Sara Roselius---
+ -Samuel Spelsberg---
+electronics-Electronics-We connect wires to logic in our work!: 
+ -Fahim Ahmed---
+ -Christopher Aitken---
+ -Roland Bell---
+ -Will Chisholm---
+ -ErinGrace Drake---
+ -Richard Kil---
+ -Saam Rezai---
+ -Emily Shaw---
+ -Jordan Shaw---
+ -Pouyan Shirvani---
+programming-Programming-We are full of 01110011011101110110000101100111!:
+ -Ian Cabacungan---
+ -Aaron Gill---
+ -Michael Kelly---
+ -Natalie Leuenberger---
+ -Kian Mehrabani---
+ -Everett Michel---
+ -Noah Reilly---
+ -Juan Segura---
+ -Theodore Todorov---
+ -Samuel Toureau---
+ -Timothy Toureau---
+ -Ethan Villagran---
+ -Eric Wolf---
+ -Peng Zhang---
