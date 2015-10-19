@@ -1,13 +1,18 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class SwingedMaze {
 	private JFrame frame = new JFrame();
 	private JPanel top = new JPanel();
+	private JPanel mazeTop = new JPanel();
+	private JButton b = new JButton();
 	/* ##################################### */
 	private RandomMaze myMaze = new RandomMaze(50, 50);
 	/* ##################################### */
@@ -17,15 +22,30 @@ public class SwingedMaze {
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setSize(1000, 1000);
-		top.setLayout(new GridLayout(myMaze.numRows(), myMaze.numCols()));
-		top.setBackground(Color.WHITE);
+		frame.setSize(800, 800);
+		mazeTop.setLayout(new GridLayout(myMaze.numRows(), myMaze.numCols()));
+		mazeTop.setBackground(Color.WHITE);
 
-		drawMaze();
+		drawSolved();
+		mazeTop.setVisible(true);
 
+		b.addActionListener(new bAction());
+
+		top.setLayout(new BorderLayout());
+		top.add(mazeTop, BorderLayout.CENTER);
+		top.add(b, BorderLayout.PAGE_END);
 		top.setVisible(true);
 		frame.add(top);
 		frame.setVisible(true);
+	}
+
+	public class bAction implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("Solving...");
+			drawSolved();
+			System.out.println("Solved!");
+		}
 	}
 
 	public void drawMaze() {
@@ -37,13 +57,31 @@ public class SwingedMaze {
 					l.setBackground(Color.BLACK);
 				} else if (m[r][c].equals(" ")) {
 					l.setBackground(Color.WHITE);
-				} else if (m[r][c].equals("W")) {
-					l.setBackground(Color.RED);
-				} else if (m[r][c].equals("P")) {
+				}
+				l.setVisible(true);
+				mazeTop.add(l);
+			}
+		}
+	}
+
+	public void drawSolved() {
+		MazeSolver solver = new MazeSolver(myMaze.getMaze());
+
+		String[][] sM = solver.getMaze();
+		for (int r = 0; r < sM.length; r++) {
+			for (int c = 0; c < sM[0].length; c++) {
+				JPanel l = new JPanel();
+				if (sM[r][c].equals("X")) {
+					l.setBackground(Color.BLACK);
+				} else if (sM[r][c].equals(" ")) {
+					l.setBackground(Color.WHITE);
+				}else if (sM[r][c].equals("B")) {
+					l.setBackground((Color.RED).darker().darker());
+				} else if (sM[r][c].equals("P")) {
 					l.setBackground(Color.GREEN);
 				}
 				l.setVisible(true);
-				top.add(l);
+				mazeTop.add(l);
 			}
 		}
 	}
