@@ -14,10 +14,14 @@ public class SwingedMaze {
 	private JPanel mazeTop = new JPanel();
 	private JButton b = new JButton();
 	/* ##################################### */
-	private RandomMaze myMaze = new RandomMaze(50, 50);
+	private RandomMaze myMaze = new RandomMaze(100, 100);
 	/* ##################################### */
+	private JPanel[][] tiles;
 
 	public SwingedMaze() {
+		String[][] m = myMaze.getMaze();
+		tiles = new JPanel[m.length][m[0].length];
+
 		frame.setTitle("Maze: " + myMaze.numCols() + " x " + myMaze.numRows());
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,7 +30,7 @@ public class SwingedMaze {
 		mazeTop.setLayout(new GridLayout(myMaze.numRows(), myMaze.numCols()));
 		mazeTop.setBackground(Color.WHITE);
 
-		drawSolved();
+		drawMaze();
 		mazeTop.setVisible(true);
 
 		b.addActionListener(new bAction());
@@ -60,6 +64,7 @@ public class SwingedMaze {
 				}
 				l.setVisible(true);
 				mazeTop.add(l);
+				tiles[r][c] = l;
 			}
 		}
 	}
@@ -70,18 +75,16 @@ public class SwingedMaze {
 		String[][] sM = solver.getMaze();
 		for (int r = 0; r < sM.length; r++) {
 			for (int c = 0; c < sM[0].length; c++) {
-				JPanel l = new JPanel();
 				if (sM[r][c].equals("X")) {
-					l.setBackground(Color.BLACK);
+					tiles[r][c].setBackground(Color.BLACK);
 				} else if (sM[r][c].equals(" ")) {
-					l.setBackground(Color.WHITE);
-				}else if (sM[r][c].equals("B")) {
-					l.setBackground((Color.RED).darker().darker());
+					tiles[r][c].setBackground(Color.WHITE);
+				} else if (sM[r][c].equals("B")) {
+					tiles[r][c].setBackground((Color.RED).darker());
 				} else if (sM[r][c].equals("P")) {
-					l.setBackground(Color.GREEN);
+					tiles[r][c].setBackground(Color.GREEN);
 				}
-				l.setVisible(true);
-				mazeTop.add(l);
+				
 			}
 		}
 	}
