@@ -226,4 +226,92 @@ public class MazeSolver {
 
 	}
 
+	public String[][] doA3() {
+		Attempt3 a = new Attempt3(maze);
+		Thread t = new Thread(a);
+		t.start();
+		return maze;
+	}
+
+	public class Attempt3 implements Runnable {
+		private String[][] m;
+
+		public Attempt3(String[][] m) {
+			this.m = m;
+		}
+
+		@Override
+		public void run() {
+			solveMaze();
+			maze = m;
+		}
+
+		public void solveMaze() {
+			int wallsCreated = -1;
+			while (wallsCreated != 0) {
+				wallsCreated = 0;
+				for (int r = 0; r < m.length; r++) {
+					for (int c = 0; c < m[0].length; c++) {
+						if (!(m[r][c] == "X") && !(m[r][c] == "B")) {
+							Location t = new Location(r, c);
+							if (!(r == 0 || c == 0 || r == m.length || c == m[0].length) && t.nearMe().size() == 1) {
+								wallsCreated++;
+								m[r][c] = "B";
+							} else {
+								m[r][c] = "P";
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public class Location {
+			private int row, col;
+
+			public Location(int row, int col) {
+				this.row = row;
+				this.col = col;
+			}
+
+			public String toString() {
+				return "[" + col + "," + row + "]";
+			}
+
+			public int getRow() {
+				return row;
+			}
+
+			public int getCol() {
+				return col;
+			}
+
+			public String myValue() {
+				return m[this.row][this.col];
+			}
+
+			public ArrayList<Location> nearMe() {
+				ArrayList<Location> t = new ArrayList<Location>();
+				if (!(row - 1 < 0)) {
+					t.add(new Location(row - 1, col));
+				}
+				if (!(row + 1 >= m.length)) {
+					t.add(new Location(row + 1, col));
+				}
+				if (!(col - 1 < 0)) {
+					t.add(new Location(row, col - 1));
+				}
+				if (!(col + 1 >= m[0].length)) {
+					t.add(new Location(row, col + 1));
+				}
+				for (int i = 0; i < t.size(); i++) {
+					if (t.get(i).myValue() == "X") {
+						t.remove(i);
+						i--;
+					}
+				}
+				return t;
+			}
+		}
+	}
 }

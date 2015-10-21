@@ -74,20 +74,23 @@ public class SwingedMaze {
 	public void drawSolved() {
 		MazeSolver solver = new MazeSolver(m);
 
-		String[][] sM = solver.doA2();
+		// #############################
+		String[][] sM = solver.doA3();
+		// #############################
+
 		for (int r = 0; r < sM.length; r++) {
 			for (int c = 0; c < sM[0].length; c++) {
 				if (sM[r][c].equals("X")) {
-					//System.out.println("Redrawing Wall");
+					// System.out.println("Redrawing Wall");
 					tiles[r][c].setBackground(Color.BLACK);
 				} else if (sM[r][c].equals(" ")) {
-					//System.out.println("Redrawing White");
+					// System.out.println("Redrawing White");
 					tiles[r][c].setBackground(Color.WHITE);
 				} else if (sM[r][c].equals("B")) {
-					//System.out.println("Redrawing Blocked");
+					// System.out.println("Redrawing Blocked");
 					tiles[r][c].setBackground((Color.RED).darker());
 				} else if (sM[r][c].equals("P")) {
-					//System.out.println("Redrawing Path");
+					// System.out.println("Redrawing Path");
 					tiles[r][c].setBackground(Color.GREEN);
 				}
 
