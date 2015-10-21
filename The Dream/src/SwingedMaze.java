@@ -14,20 +14,23 @@ public class SwingedMaze {
 	private JPanel mazeTop = new JPanel();
 	private JButton b = new JButton();
 	/* ##################################### */
-	private RandomMaze myMaze = new RandomMaze(50, 50);
+	private RandomMaze myMaze = new RandomMaze(20, 20);
+	private NoahsRandomMaze noahsMaze = new NoahsRandomMaze(100, 100);
 	/* ##################################### */
+
+	String[][] m = myMaze.getMaze();
+
 	private JPanel[][] tiles;
 
 	public SwingedMaze() {
-		String[][] m = myMaze.getMaze();
 		tiles = new JPanel[m.length][m[0].length];
 
-		frame.setTitle("Maze: " + myMaze.numCols() + " x " + myMaze.numRows());
+		frame.setTitle("Maze: " + m[0].length + " x " + m.length);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setSize(800, 800);
-		mazeTop.setLayout(new GridLayout(myMaze.numRows(), myMaze.numCols()));
+		mazeTop.setLayout(new GridLayout(m.length, m[0].length));
 		mazeTop.setBackground(Color.WHITE);
 
 		drawMaze();
@@ -53,9 +56,8 @@ public class SwingedMaze {
 	}
 
 	public void drawMaze() {
-		String[][] m = myMaze.getMaze();
-		for (int r = 0; r < myMaze.numRows(); r++) {
-			for (int c = 0; c < myMaze.numCols(); c++) {
+		for (int r = 0; r < m.length; r++) {
+			for (int c = 0; c < m[0].length; c++) {
 				JPanel l = new JPanel();
 				if (m[r][c].equals("X")) {
 					l.setBackground(Color.BLACK);
@@ -70,18 +72,22 @@ public class SwingedMaze {
 	}
 
 	public void drawSolved() {
-		MazeSolver solver = new MazeSolver(myMaze.getMaze());
+		MazeSolver solver = new MazeSolver(m);
 
-		String[][] sM = solver.doA1();
+		String[][] sM = solver.doA2();
 		for (int r = 0; r < sM.length; r++) {
 			for (int c = 0; c < sM[0].length; c++) {
 				if (sM[r][c].equals("X")) {
+					//System.out.println("Redrawing Wall");
 					tiles[r][c].setBackground(Color.BLACK);
 				} else if (sM[r][c].equals(" ")) {
+					//System.out.println("Redrawing White");
 					tiles[r][c].setBackground(Color.WHITE);
 				} else if (sM[r][c].equals("B")) {
+					//System.out.println("Redrawing Blocked");
 					tiles[r][c].setBackground((Color.RED).darker());
 				} else if (sM[r][c].equals("P")) {
+					//System.out.println("Redrawing Path");
 					tiles[r][c].setBackground(Color.GREEN);
 				}
 
@@ -91,6 +97,10 @@ public class SwingedMaze {
 
 	public RandomMaze getRMaze() {
 		return myMaze;
+	}
+
+	public NoahsRandomMaze getNRMaze() {
+		return noahsMaze;
 	}
 
 	public static void main(String[] args) {

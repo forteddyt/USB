@@ -147,17 +147,82 @@ public class MazeSolver {
 
 		@Override
 		public void run() {
+			startFilling();
+			maze = startingMaze;
+		}
 
+		public void startFilling() {
+			ArrayList<Location> deadEnds = getEnds();
+			for (Location l : deadEnds) {
+				fillEnds(l);
+			}
+		}
+
+		public void fillEnds(Location l) {
+			if (l.nearMe().size() == 1) {
+				int row = l.nearMe().get(0).row;
+				int col = l.nearMe().get(0).col;
+				startingMaze[row][col] = "B";
+			}
 		}
 
 		public ArrayList<Location> getEnds() {
 			ArrayList<Location> l = new ArrayList<Location>();
 
+			for (int r = 0; r < startingMaze.length; r++) {
+				for (int c = 0; c < startingMaze[0].length; c++) {
+					if (!(startingMaze[r][c].equals("X"))) {
+						System.out.println("Trying location at [" + c + ", " + r + "]");
+						Location loc = new Location(r, c);
+						int numWhites = 0;
+						for (Location tLoc : loc.nearMe()) {
+							if (!(tLoc.myValue() == "X")) {
+								numWhites++;
+							}
+						}
+						if (numWhites == 1) {
+							System.out.println("Dead end found at " + loc.toString());
+							l.add(loc);
+						}
+					}
+				}
+			}
+
 			return l;
 		}
 
 		public class Location {
+			private int row, col;
 
+			public Location(int row, int col) {
+				this.row = row;
+				this.col = col;
+			}
+
+			public String toString() {
+				return "[" + col + "," + row + "]";
+			}
+
+			public int getRow() {
+				return row;
+			}
+
+			public int getCol() {
+				return col;
+			}
+
+			public String myValue() {
+				return startingMaze[row][col];
+			}
+
+			public ArrayList<Location> nearMe() {
+				ArrayList<Location> t = new ArrayList<Location>();
+				t.add(new Location(row - 1, col));
+				t.add(new Location(row + 1, col));
+				t.add(new Location(row, col - 1));
+				t.add(new Location(row, col + 1));
+				return t;
+			}
 		}
 
 	}
