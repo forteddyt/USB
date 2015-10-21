@@ -14,7 +14,7 @@ public class SwingedMaze {
 	private JPanel mazeTop = new JPanel();
 	private JButton b = new JButton();
 	/* ##################################### */
-	private RandomMaze myMaze = new RandomMaze(100, 100);
+	private RandomMaze myMaze = new RandomMaze(50, 50);
 	/* ##################################### */
 	private JPanel[][] tiles;
 
@@ -72,7 +72,7 @@ public class SwingedMaze {
 	public void drawSolved() {
 		MazeSolver solver = new MazeSolver(myMaze.getMaze());
 
-		String[][] sM = solver.getMaze();
+		String[][] sM = solver.doA1();
 		for (int r = 0; r < sM.length; r++) {
 			for (int c = 0; c < sM[0].length; c++) {
 				if (sM[r][c].equals("X")) {
@@ -84,7 +84,7 @@ public class SwingedMaze {
 				} else if (sM[r][c].equals("P")) {
 					tiles[r][c].setBackground(Color.GREEN);
 				}
-				
+
 			}
 		}
 	}
