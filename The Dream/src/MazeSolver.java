@@ -159,11 +159,10 @@ public class MazeSolver {
 		}
 
 		public void fillEnds(Location l) {
-			if (l.nearMe().size() == 1) {
-				int row = l.nearMe().get(0).row;
-				int col = l.nearMe().get(0).col;
-				startingMaze[row][col] = "B";
-			}
+			int row = l.nearMe().get(0).row;
+			int col = l.nearMe().get(0).col;
+			System.out.println("Setting [" + col + ", " + row + "] as a blocked path");
+			startingMaze[row][col] = "B";
 		}
 
 		public ArrayList<Location> getEnds() {
@@ -172,16 +171,16 @@ public class MazeSolver {
 			for (int r = 0; r < startingMaze.length; r++) {
 				for (int c = 0; c < startingMaze[0].length; c++) {
 					if (!(startingMaze[r][c].equals("X"))) {
-						System.out.println("Trying location at [" + c + ", " + r + "]");
 						Location loc = new Location(r, c);
 						int numWhites = 0;
 						for (Location tLoc : loc.nearMe()) {
-							if (!(tLoc.myValue() == "X")) {
+							boolean isDoor = tLoc.getCol() == 0 || tLoc.getCol() == startingMaze[0].length
+									|| tLoc.getRow() == 0 || tLoc.getRow() == startingMaze.length;
+							if (!isDoor && !(startingMaze[tLoc.getRow()][tLoc.getCol()] == "X")) {
 								numWhites++;
 							}
 						}
 						if (numWhites == 1) {
-							System.out.println("Dead end found at " + loc.toString());
 							l.add(loc);
 						}
 					}
@@ -212,7 +211,7 @@ public class MazeSolver {
 			}
 
 			public String myValue() {
-				return startingMaze[row][col];
+				return startingMaze[this.row][this.col];
 			}
 
 			public ArrayList<Location> nearMe() {
