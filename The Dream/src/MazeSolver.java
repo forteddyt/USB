@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
 public class MazeSolver {
-	private String[][] maze;
+	private RandomMaze maze;
 
-	public MazeSolver(String[][] maze) {
+	public MazeSolver(RandomMaze maze) {
 		this.maze = maze;
 	}
 

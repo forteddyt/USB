@@ -8,13 +8,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RandomMaze {
+	// #####################################
+	private static final int ROW_LENGTH = 120;
+	private static final int COL_LENGTH = 120;
+	// #####################################
 
 	private static JPanel[][] myMaze;
 	private JFrame frame = new JFrame();
-	private int delay = 75;
+	private int delay = 2;
+	private static RandomMaze m;
 
 	public static void main(String[] args) {
-		RandomMaze m = new RandomMaze(30, 30);
+		if (m == null) {
+			m = new RandomMaze(COL_LENGTH, ROW_LENGTH);
+		}
+	}
+
+	public RandomMaze() {
 
 	}
 
@@ -31,8 +41,7 @@ public class RandomMaze {
 		// \".");
 		myMaze[startRow][startCol].setBackground(Color.WHITE);
 		createPath(startRow, startCol);
-		// createDoors();
-		System.out.println("Completed");
+		createDoors();
 	}
 
 	public void constructDisplay() {
