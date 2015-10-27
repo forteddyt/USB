@@ -1,9 +1,8 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,7 +11,7 @@ public class RandomMaze {
 
 	private static JPanel[][] myMaze;
 	private JFrame frame = new JFrame();
-	private ArrayList<JPanel> spots = new ArrayList<JPanel>();
+	private int delay = 75;
 
 	public static void main(String[] args) {
 		RandomMaze m = new RandomMaze(30, 30);
@@ -32,11 +31,12 @@ public class RandomMaze {
 		// \".");
 		myMaze[startRow][startCol].setBackground(Color.WHITE);
 		createPath(startRow, startCol);
-		createDoors();
+		// createDoors();
+		System.out.println("Completed");
 	}
 
 	public void constructDisplay() {
-		frame.setName("Maze: " + numCols() + "x" + numRows());
+		frame.setTitle("Maze: " + numCols() + "x" + numRows());
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setSize(800, 800);
@@ -80,13 +80,20 @@ public class RandomMaze {
 		}
 	}
 
+	public void doDelay() {
+		try {
+			TimeUnit.MILLISECONDS.sleep(delay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void createPath(int givenRow, int givenCol) {
+		doDelay();
 		if (givenRow == 0 || givenRow == myMaze.length - 1 || givenCol == 0 || givenCol == myMaze.length - 1) {
-			// System.out.println("Return 1");
+			myMaze[givenRow][givenCol].setBackground(Color.BLACK);
 			return;
 		}
-		// System.out.println("Setting position [" + givenCol + ", " + givenRow
-		// + "] to \" \".");
 		myMaze[givenRow][givenCol].setBackground(Color.WHITE);
 		Set<Integer> moves = new LinkedHashSet<Integer>();
 		while (moves.size() < 4) {
@@ -100,6 +107,7 @@ public class RandomMaze {
 						|| (givenRow - 2 >= 0 && myMaze[givenRow - 2][givenCol].getBackground().equals(Color.WHITE))
 						|| myMaze[givenRow - 1][givenCol + 1].getBackground().equals(Color.WHITE)
 						|| myMaze[givenRow - 1][givenCol - 1].getBackground().equals(Color.WHITE))) {
+					myMaze[givenRow - 1][givenCol].setBackground(Color.BLUE.brighter());
 					createPath(givenRow - 1, givenCol);
 				}
 				break;
@@ -109,6 +117,7 @@ public class RandomMaze {
 								&& myMaze[givenRow + 2][givenCol].getBackground().equals(Color.WHITE))
 						|| myMaze[givenRow + 1][givenCol + 1].getBackground().equals(Color.WHITE)
 						|| myMaze[givenRow + 1][givenCol - 1].getBackground().equals(Color.WHITE))) {
+					myMaze[givenRow + 1][givenCol].setBackground(Color.BLUE.brighter());
 					createPath(givenRow + 1, givenCol);
 				}
 				break;
@@ -117,6 +126,7 @@ public class RandomMaze {
 						|| (givenCol - 2 >= 0 && myMaze[givenRow][givenCol - 2].getBackground().equals(Color.WHITE))
 						|| myMaze[givenRow + 1][givenCol - 1].getBackground().equals(Color.WHITE)
 						|| myMaze[givenRow - 1][givenCol - 1].getBackground().equals(Color.WHITE))) {
+					myMaze[givenRow][givenCol - 1].setBackground(Color.BLUE.brighter());
 					createPath(givenRow, givenCol - 1);
 				}
 				break;
@@ -126,6 +136,7 @@ public class RandomMaze {
 								&& myMaze[givenRow][givenCol + 2].getBackground().equals(Color.WHITE))
 						|| myMaze[givenRow + 1][givenCol + 1].getBackground().equals(Color.WHITE)
 						|| myMaze[givenRow - 1][givenCol + 1].getBackground().equals(Color.WHITE))) {
+					myMaze[givenRow][givenCol + 1].setBackground(Color.BLUE.brighter());
 					createPath(givenRow, givenCol + 1);
 				}
 				break;
@@ -154,10 +165,11 @@ public class RandomMaze {
 			}
 
 			if (doorable) {
+				doDelay();
 				myMaze[rRow][rCol].setBackground(Color.WHITE);
 				doorsMade++;
-
 			}
 		}
+		System.out.println("Maze Completed");
 	}
 }
