@@ -10,12 +10,12 @@ public class MazeSolver {
 
 	public String[][] doA1() {
 		Attempt1 a = new Attempt1(maze);
-		Thread t = new Thread(a);
-		t.start();
+		a.deadEndStart();
+		maze = a.startingMaze;
 		return maze;
 	}
 
-	public class Attempt1 implements Runnable {
+	public class Attempt1 {
 		/*
 		 * Attempt 1 "B" should be not possible paths "P" should be possible
 		 * paths
@@ -28,12 +28,6 @@ public class MazeSolver {
 
 		public String[][] solvedMaze() {
 			return startingMaze;
-		}
-
-		@Override
-		public void run() {
-			deadEndStart();
-			maze = startingMaze;
 		}
 
 		public void deadEndStart() {
@@ -133,22 +127,16 @@ public class MazeSolver {
 
 	public String[][] doA2() {
 		Attempt2 a = new Attempt2(maze);
-		Thread t = new Thread(a);
-		t.start();
+		a.startFilling();
+		maze = a.startingMaze;
 		return maze;
 	}
 
-	public class Attempt2 implements Runnable {
+	public class Attempt2 {
 		private String[][] startingMaze;
 
 		public Attempt2(String[][] m) {
 			startingMaze = m;
-		}
-
-		@Override
-		public void run() {
-			startFilling();
-			maze = startingMaze;
 		}
 
 		public void startFilling() {
@@ -228,33 +216,28 @@ public class MazeSolver {
 
 	public String[][] doA3() {
 		Attempt3 a = new Attempt3(maze);
-		Thread t = new Thread(a);
-		t.start();
+		a.solveMaze();
 		return maze;
 	}
 
-	public class Attempt3 implements Runnable {
+	public class Attempt3 {
 		private String[][] m;
 
 		public Attempt3(String[][] m) {
 			this.m = m;
 		}
 
-		@Override
-		public void run() {
-			solveMaze();
-			maze = m;
-		}
-
 		public void solveMaze() {
 			int wallsCreated = -1;
+			int run = 0;
 			while (wallsCreated != 0) {
 				wallsCreated = 0;
 				for (int r = 0; r < m.length; r++) {
 					for (int c = 0; c < m[0].length; c++) {
 						if (!(m[r][c] == "X") && !(m[r][c] == "B")) {
 							Location t = new Location(r, c);
-							if (!(r == 0 || c == 0 || r == m.length || c == m[0].length) && t.nearMe().size() == 1) {
+							if (!(r == 0 || c == 0 || r == m.length - 1 || c == m[0].length - 1)
+									&& t.nearMe().size() == 1) {
 								wallsCreated++;
 								m[r][c] = "B";
 							} else {
@@ -263,7 +246,9 @@ public class MazeSolver {
 						}
 					}
 				}
+				run++;
 			}
+			maze = m;
 		}
 
 		public class Location {
@@ -305,7 +290,7 @@ public class MazeSolver {
 					t.add(new Location(row, col + 1));
 				}
 				for (int i = 0; i < t.size(); i++) {
-					if (t.get(i).myValue() == "X") {
+					if (t.get(i).myValue() == "X" || t.get(i).myValue() == "B") {
 						t.remove(i);
 						i--;
 					}
