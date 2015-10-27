@@ -1,16 +1,25 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RandomMaze {
 	// #####################################
-	private static final int ROW_LENGTH = 120;
-	private static final int COL_LENGTH = 120;
+	private static final int ROW_LENGTH = 30;
+	private static final int COL_LENGTH = 30;
+	private static final SolveMethod solve = SolveMethod.Loop1;
 	// #####################################
 
 	private static JPanel[][] myMaze;
@@ -33,7 +42,9 @@ public class RandomMaze {
 			return;
 		}
 		myMaze = new JPanel[givenRow][givenCol];
+
 		constructDisplay();
+
 		int startRow = (int) (Math.random() * (givenRow - 2)) + 1;
 		int startCol = (int) (Math.random() * (givenRow - 2)) + 1;
 
@@ -48,9 +59,30 @@ public class RandomMaze {
 		frame.setTitle("Maze: " + numCols() + "x" + numRows());
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setSize(800, 800);
+		frame.setSize(800, 950);
 		JPanel overlay = new JPanel();
-		overlay.setLayout(new GridLayout(numCols(), numRows()));
+		JPanel buttonOverlay = new JPanel();
+		JPanel mazeOverlay = new JPanel();
+		mazeOverlay.setLayout(new GridLayout(numCols(), numRows()));
+
+		JButton button = new JButton();
+		button.addActionListener(new solveButton(solve));
+		button.setFocusable(false);
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setFont(new Font("Arial", Font.BOLD, 75));
+		button.setText("Solve Maze!");
+
+		buttonOverlay.setLayout(new BorderLayout());
+		buttonOverlay.setBackground(Color.GREEN.darker().darker());
+		buttonOverlay.add(button, BorderLayout.CENTER);
+		buttonOverlay.add(Box.createVerticalStrut(25), BorderLayout.PAGE_START);
+		buttonOverlay.add(Box.createRigidArea(new Dimension(50, 150)), BorderLayout.LINE_START);
+		buttonOverlay.add(Box.createVerticalStrut(25), BorderLayout.PAGE_END);
+		buttonOverlay.add(Box.createRigidArea(new Dimension(50, 150)), BorderLayout.LINE_END);
+
+		overlay.setLayout(new BorderLayout());
+		overlay.add(mazeOverlay, BorderLayout.CENTER);
+		overlay.add(buttonOverlay, BorderLayout.PAGE_END);
 
 		for (int r = 0; r < numRows(); r++) {
 			for (int c = 0; c < numCols(); c++) {
@@ -58,11 +90,14 @@ public class RandomMaze {
 				temp.setBackground(Color.BLACK);
 				temp.setVisible(true);
 				myMaze[r][c] = temp;
-				overlay.add(temp);
+				mazeOverlay.add(temp);
 			}
 		}
 
+		mazeOverlay.setVisible(true);
+		buttonOverlay.setVisible(true);
 		overlay.setVisible(true);
+
 		frame.add(overlay);
 		frame.setVisible(true);
 
@@ -180,5 +215,27 @@ public class RandomMaze {
 			}
 		}
 		System.out.println("Maze Completed");
+	}
+
+	public class solveButton implements ActionListener {
+
+		public solveButton(SolveMethod s) {
+			if (s.equals(SolveMethod.Recursive1)) {
+
+			} else if (s.equals(SolveMethod.Recursive2)) {
+
+			} else if (s.equals(SolveMethod.Loop1)) {
+
+			}
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		}
+	}
+
+	enum SolveMethod {
+		Recursive1, Recursive2, Loop1
 	}
 }
