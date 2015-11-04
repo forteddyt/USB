@@ -17,10 +17,10 @@ import javax.swing.JPanel;
 
 public class RandomMaze {
 	// #####################################
-	private static final int ROW_LENGTH = 30;
-	private static final int COL_LENGTH = 30;
+	private static final int ROW_LENGTH = 25;
+	private static final int COL_LENGTH = 25;
 	private static final SolveMethod solve = SolveMethod.Loop1;
-	private int buildDelay = 2;
+	private int buildDelay = 1;
 	private int solveDelay = 25;
 	// #####################################
 

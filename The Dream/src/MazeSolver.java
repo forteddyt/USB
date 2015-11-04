@@ -116,7 +116,7 @@ public class MazeSolver {
 
 	public void doA3(JPanel[][] inMaze, int delay) {
 		Attempt3 a = new Attempt3(inMaze, delay);
-		a.solveMaze();
+		a.bleh();
 	}
 
 	public class Attempt3 {
@@ -128,6 +128,20 @@ public class MazeSolver {
 			this.delay = delay;
 		}
 
+		public void bleh() {
+			for (int r = 0; r < iM.length; r++) {
+				for (int c = 0; c < iM[0].length; c++) {
+					try {
+						TimeUnit.MILLISECONDS.sleep(25);
+						iM[r][c].setBackground(Color.CYAN);
+					} catch (Exception e) {
+						System.out.println("Error!");
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
 		public void solveMaze() {
 			int wallsCreated = -1;
 			int runs = 0;
@@ -135,7 +149,7 @@ public class MazeSolver {
 			while (wallsCreated != 0) {
 				System.out.println("At runs: " + runs);
 				wallsCreated = 0;
-				doDelay(delay);
+				// doDelay(delay);
 				for (int r = 0; r < iM.length; r++) {
 					for (int c = 0; c < iM[0].length; c++) {
 						if (!(iM[r][c].getBackground().equals(Color.BLACK))
