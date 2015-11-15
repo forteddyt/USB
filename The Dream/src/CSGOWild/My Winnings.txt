@@ -1,0 +1,5 @@
+COINFLIP_300855	Win	Coin Flip	48.80	Sent (Offer ID: 841676560)
+COINFLIP_300855	Deposit	Coin Flip	23.25	Received (Offer ID: 841675280)
+COINFLIP_280434	Win	Coin Flip	44.97	Sent (Offer ID: 839333293)
+COINFLIP_280434	Deposit	Coin Flip	23.25	Received (Offer ID: 839331555)
+COINFLIP_279770	Win	Coin Flip	201.43	Sent (Offer ID: 839303817)
