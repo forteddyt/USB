@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MazeSolver {
@@ -116,7 +117,7 @@ public class MazeSolver {
 
 	public void doA3(JPanel[][] inMaze, int delay) {
 		Attempt3 a = new Attempt3(inMaze, delay);
-		a.bleh();
+		a.solveMaze();
 	}
 
 	public class Attempt3 {
@@ -128,44 +129,16 @@ public class MazeSolver {
 			this.delay = delay;
 		}
 
-		public void bleh() {
-			for (int r = 0; r < iM.length; r++) {
-				for (int c = 0; c < iM[0].length; c++) {
-					try {
-						TimeUnit.MILLISECONDS.sleep(25);
-						iM[r][c].setBackground(Color.CYAN);
-					} catch (Exception e) {
-						System.out.println("Error!");
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
 		public void solveMaze() {
 			int wallsCreated = -1;
-			int runs = 0;
-			System.out.println("Solving...");
+			ArrayList<JPanel> ends = new ArrayList<JPanel>();
 			while (wallsCreated != 0) {
-				System.out.println("At runs: " + runs);
 				wallsCreated = 0;
-				// doDelay(delay);
-				for (int r = 0; r < iM.length; r++) {
-					for (int c = 0; c < iM[0].length; c++) {
-						if (!(iM[r][c].getBackground().equals(Color.BLACK))
-								&& !(iM[r][c].getBackground().equals(Color.DARK_GRAY))) {
-							Location t = new Location(r, c);
-							if (!(r == 0 || c == 0 || r == iM.length - 1 || c == iM[0].length - 1)
-									&& t.nearMe().size() == 1) {
-								wallsCreated++;
-								iM[r][c].setBackground(Color.DARK_GRAY);
-							} else {
-								iM[r][c].setBackground(Color.GREEN);
-							}
-						}
-					}
-				}
-				runs++;
+
+			}
+
+			for (JPanel j : ends) {
+				j.setBackground(Color.GRAY);
 			}
 		}
 
