@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class ProblemB {
+	private static Scanner scan = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int n = scan.nextInt();
+		System.out.println(fibPlace(n));
+	}
+
+	public static int fibPlace(int n) {
+		double sqrtCheck1 = Math.sqrt(5 * Math.pow(n, 2) + 4);
+		double sqrtCheck2 = Math.sqrt(5 * Math.pow(n, 2) - 4);
+		if (sqrtCheck1 == (int) (sqrtCheck1) || sqrtCheck2 == (int) (sqrtCheck2)) {
+			int q = 0;
+			while (fib(q) != n) {
+				q++;
+			}
+			// return q;
+			return fib(q + 1);
+		}
+
+		int dis0 = -1;
+		int dis1 = n - fib(0);
+		int i = 1;
+		while (i <= 50) {
+			dis0 = dis1;
+			dis1 = n - fib(i);
+			if (dis0 > 0 && dis1 < 0) {
+				// lowest point met
+				if (Math.abs(dis0) <= Math.abs(dis1)) {
+					// return i - 1;
+					return (int) (fib(i) + (3.0 / 2.0) * (n - fib(i - 1)));
+				} else {
+					// return i;
+					return (int) (fib(i + 1) + (3.0 / 2.0) * (n - fib(i)));
+				}
+			}
+			i++;
+		}
+		return -1;
+	}
+
+	public static int fib(int n) {
+		if (n == 1) {
+			return 1;
+		} else if (n == 0) {
+			return 0;
+		} else {
+			return (fib(n - 1) + fib(n - 2));
+		}
+	}
+}
