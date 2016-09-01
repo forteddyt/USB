@@ -1,3 +1,5 @@
+package Summer2016Contest;
+
 import java.util.Scanner;
 
 public class ProblemB {
