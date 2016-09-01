@@ -1,0 +1,18 @@
+INDEX VERSION 1.127+C:\Users\Teddy\Git Bash\USB\.metadata\.plugins\org.eclipse.jdt.core
+206583508.index
+3666464348.index
+3694873849.index
+779670694.index
+4221287816.index
+2499430334.index
+2159801056.index
+3750501350.index
+2363522376.index
+3110286934.index
+1018340116.index
+2675434011.index
+3675880353.index
+2118430585.index
+1860788487.index
+3799666869.index
+2224085249.index
