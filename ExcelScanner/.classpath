@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-ooxml-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-ooxml-schemas-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-scratchpad-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/lib/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="D:/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/ooxml-lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/USB TEMP BACKUP/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/USB TEMP BACKUP/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-ooxml-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/USB TEMP BACKUP/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-ooxml-schemas-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/USB TEMP BACKUP/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/poi-scratchpad-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/ftb/libraries/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Teddy/Documents/USB TEMP BACKUP/Robotics/ExcelScanner/poi-bin-3.12-20150511/poi-3.12/ooxml-lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
