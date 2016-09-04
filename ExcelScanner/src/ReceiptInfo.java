@@ -32,28 +32,22 @@ public class ReceiptInfo implements Comparable {
 
 	@Override
 	public String toString() {
-		return "ReceiptInfo [Name: " + firstName + " " + lastName + " "
-				+ itteration + " --- Parent Name: " + parentName
+		return "ReceiptInfo [Name: " + firstName + " " + lastName + " " + itteration + " --- Parent Name: " + parentName
 				+ " --- Cost: " + cost + "]";
 	}
 
 	// EWWEWWEWEWEWEWEWEWEWE ;-;
 	public int compareTo(Object o) {
 		if ((firstName + lastName + ((itteration == 0) ? "" : itteration))
-				.equals(((ReceiptInfo) o).getFirstName()
-						+ ((ReceiptInfo) o).getLastName()
-						+ ((((ReceiptInfo) o).getItteration() == 0) ? ""
-								: ((ReceiptInfo) o).getItteration()))) {
+				.equals(((ReceiptInfo) o).getFirstName() + ((ReceiptInfo) o).getLastName()
+						+ ((((ReceiptInfo) o).getItteration() == 0) ? "" : ((ReceiptInfo) o).getItteration()))) {
 			itteration++;
 			return (firstName + lastName + ((itteration == 0) ? "" : itteration))
-					.compareTo(((ReceiptInfo) o).getFirstName()
-							+ ((ReceiptInfo) o).getLastName()
-							+ ((((ReceiptInfo) o).getItteration() == 0) ? ""
-									: ((ReceiptInfo) o).getItteration()));
+					.compareTo(((ReceiptInfo) o).getFirstName() + ((ReceiptInfo) o).getLastName()
+							+ ((((ReceiptInfo) o).getItteration() == 0) ? "" : ((ReceiptInfo) o).getItteration()));
 
 		} else {
-			return (firstName + lastName).compareTo(((ReceiptInfo) o)
-					.getFirstName() + ((ReceiptInfo) o).getLastName());
+			return (firstName + lastName).compareTo(((ReceiptInfo) o).getFirstName() + ((ReceiptInfo) o).getLastName());
 		}
 	}
 }

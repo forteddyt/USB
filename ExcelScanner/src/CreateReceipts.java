@@ -33,8 +33,9 @@ public class CreateReceipts {
 					}
 				}
 
-				File newReceipt = new File("Receipts/" + r.getFirstName() + "_"
-						+ r.getLastName() + "_" + r.getItteration() + ".docx"); //Creates 
+				File newReceipt = new File(
+						"Receipts/" + r.getFirstName() + "_" + r.getLastName() + "_" + r.getItteration() + ".docx");
+				// Creates receipts in receipts folder.
 				if (!newReceipt.exists()) {
 					newReceipt.createNewFile();
 				}
@@ -50,8 +51,7 @@ public class CreateReceipts {
 	}
 
 	// Copy all runs from one paragraph to another, keeping the style unchanged
-	private static void copyAllRunsToAnotherParagraph(XWPFParagraph oldPar,
-			XWPFParagraph newPar, ReceiptInfo r) {
+	private static void copyAllRunsToAnotherParagraph(XWPFParagraph oldPar, XWPFParagraph newPar, ReceiptInfo r) {
 		final int DEFAULT_FONT_SIZE = 10;
 
 		for (XWPFRun run : oldPar.getRuns()) {
@@ -60,8 +60,7 @@ public class CreateReceipts {
 				continue;
 			}
 
-			textInRun = textInRun.replace("«Student_Name»", r.getFirstName()
-					+ " " + r.getLastName());
+			textInRun = textInRun.replace("«Student_Name»", r.getFirstName() + " " + r.getLastName());
 			textInRun = textInRun.replace("«Parent_Name»", r.getParentName());
 			textInRun = textInRun.replace("«Amount»", r.getCost() + "");
 
@@ -75,7 +74,7 @@ public class CreateReceipts {
 			// } catch (Exception e) {
 			// e.printStackTrace();
 			// }
-			
+
 			XWPFRun newRun = newPar.createRun();
 			newPar.setAlignment(oldPar.getAlignment());
 			newPar.setBorderBetween(oldPar.getBorderBetween());
@@ -88,8 +87,7 @@ public class CreateReceipts {
 			newRun.setText(textInRun);
 
 			// Apply the same style
-			newRun.setFontSize((fontSize == -1) ? DEFAULT_FONT_SIZE : run
-					.getFontSize());
+			newRun.setFontSize((fontSize == -1) ? DEFAULT_FONT_SIZE : run.getFontSize());
 			newRun.setFontFamily(run.getFontFamily());
 			newRun.setBold(run.isBold());
 			newRun.setItalic(run.isItalic());
