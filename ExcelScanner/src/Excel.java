@@ -20,8 +20,7 @@ public class Excel {
 	private static List<ReceiptInfo> receipts = new ArrayList<ReceiptInfo>();
 	private static CreateReceipts cr = null;
 
-	public static void main(String[] args) throws InvalidFormatException,
-			IOException {
+	public static void main(String[] args) throws InvalidFormatException, IOException {
 		receiptInformation();
 		cr = new CreateReceipts(receipts);
 		cr.create();
@@ -52,8 +51,9 @@ public class Excel {
 															// in the specific
 															// row
 				int cellAt = 0;
-				String f = "", l = "", p = "";
-				int c = -1;
+				String f = "", l = "", p = ""; // First name, last name, parent
+												// name
+				int c = -1; // Cost
 				while (cellI.hasNext()) {
 					Cell cell = cellI.next(); // stores current cell information
 					switch (cell.getColumnIndex()) {
@@ -67,7 +67,7 @@ public class Excel {
 						p = cell.getStringCellValue();
 						break;
 					case 13:
-						if (cell.getCellType() == cell.CELL_TYPE_NUMERIC) {
+						if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
 							c = (int) (cell.getNumericCellValue());
 						}
 					}
@@ -95,10 +95,9 @@ public class Excel {
 			temp = "";
 			while (m.find()) {
 				String t = m.group(1);
-				if (!t.equals("Toledo-Cruz") && !t.equals("VanOverschelde")
-						&& !t.equals("DuPree")) // special cases
-					temp += t.substring(0, 1).toUpperCase()
-							+ t.substring(1).toLowerCase();
+				if (!t.equals("Toledo-Cruz") && !t.equals("VanOverschelde") && !t.equals("DuPree")) // special
+																									// cases
+					temp += t.substring(0, 1).toUpperCase() + t.substring(1).toLowerCase();
 			}
 		}
 		return temp;
