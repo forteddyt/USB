@@ -75,7 +75,7 @@ public class CreateReceipts {
 			// } catch (Exception e) {
 			// e.printStackTrace();
 			// }
-			//
+			
 			XWPFRun newRun = newPar.createRun();
 			newPar.setAlignment(oldPar.getAlignment());
 			newPar.setBorderBetween(oldPar.getBorderBetween());
