@@ -34,7 +34,7 @@ public class CreateReceipts {
 				}
 
 				File newReceipt = new File("Receipts/" + r.getFirstName() + "_"
-						+ r.getLastName() + "_" + r.getItteration() + ".docx");
+						+ r.getLastName() + "_" + r.getItteration() + ".docx"); //Creates 
 				if (!newReceipt.exists()) {
 					newReceipt.createNewFile();
 				}
